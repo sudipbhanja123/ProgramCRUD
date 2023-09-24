@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Drawing.Imaging;
 
 namespace ProgramCRUD.Model
@@ -24,7 +24,17 @@ namespace ProgramCRUD.Model
         public int MaxNumOfApplications { get; set; }
         public Image CoverPhoto { get; set; }
 
-        public String IpPhoto { get; set; }
+        public string? FirstName { get; set; }
+
+        public string? LastName { get; set; }
+
+        public string? Email { get; set; }
+        public string? Phone { get; set; }
+        public string? Nationality { get; set; }
+        public string? Current_Residence { get; set; }
+        public string? IDNo { get; set; }
+        public string? DOB { get; set; }
+        public string? Gender { get; set; }
 
     }
 }
