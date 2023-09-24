@@ -128,3 +128,56 @@ input:checked + .slider:before {
     .slider.round:before {
         border-radius: 50%;
     }
+
+.image-container {
+    width: 50%; /* Set the desired width */
+    max-width: 400px; /* Adjust the maximum width as needed */
+    height: 225px; /* 16:9 aspect ratio */
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+    overflow: hidden;
+    border: 2px solid gray; /* Hide any overflow content */
+    border-style: dashed;
+    border-radius: 7px;
+}
+
+.image-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    z-index: 1;
+    opacity: 0;
+}
+
+.image-text {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10px;
+}
+
+.icon {
+    margin-bottom: 15px;
+}
+
+.image-text span {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.image-info {
+    margin-top: 8px;
+    color: rgb(187, 187, 187);
+    font-size: 15px !important;
+}
