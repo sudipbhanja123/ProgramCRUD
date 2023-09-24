@@ -1,0 +1,79 @@
+﻿@page "/fetchdata"
+@using ProgramCRUD.Data
+@using ProgramCRUD.Model
+@inject ProgramService proService
+
+@if (programs == null)
+{
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>Title </th>
+                    <th>Summary </th>
+                    <th>Description </th>
+                    <th>Skills </th>
+                    <th>Benefits </th>
+                    <th>Criteria </th>
+                    <th>Type </th>
+                    <th>Start </th>
+                    <th>Open </th>
+                    <th>Close </th>
+                    <th>Duration </th>
+                    <th>Location </th>
+                    <th>Min Qualification </th>
+                    <th>Number of applications </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pro in programs)
+                {
+                    <tr>
+                        <td>@pro.Title</td>
+                        <td>@pro.Summary</td>
+                        <td>@pro.Description</td>
+                        <td>@pro.Skills</td>
+                        <td>@pro.Benifits</td>
+                        <td>@pro.Criteria</td>
+                        <td>@pro.Type</td>
+                        <td>@pro.Start</td>
+                        <td>@pro.Open</td>
+                        <td>@pro.Close</td>
+                         <td>@pro.Duration</td>
+                        <td>@pro.Location</td>
+                        <td>@pro.Qualification</td>
+                        <td>@pro.MaxNumOfApplications</td>
+                        <td>
+                            <a href=@($"ProgramEdit/{pro.id}/{pro.Title}") class="btn btn-primary"><span class="oi oi-pencil" /> </a>
+                            <button class="btn btn-danger" @onclick="async () => await DeleteEmployee(pro.id, pro.Title)"><span class="oi oi-trash" /></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public List<ProgramModel>? programs { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        programs = await proService.GetProgramDetails();
+    }
+
+    private async Task DeleteEmployee(Guid? id, string? department)
+    {
+        await proService.DeleteProgram(Convert.ToString(id), department);
+        programs = await proService.GetProgramDetails();
+
+    }
+}
